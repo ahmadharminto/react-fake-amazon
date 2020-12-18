@@ -13,7 +13,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Page404 from "./Page404";
 import Orders from "./Orders";
 
-const promise = loadStripe('pk_test_51HzTxwJzHZ47EpICpjjnYlKsvav04QEwSvhZh3idqT8KLgDHO6tsTvZ1yYAbG3XZzOZHH88yaJL91AdbiIW4ObM900lXTHbutN');
+const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 function App() {
   document.title = 'Fake Amazon.com'
