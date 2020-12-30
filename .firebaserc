@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "shop-c432d"
+  },
+  "targets": {
+    "shop-c432d": {
+      "hosting": {
+        "amazon": [
+          "shop-c432d"
+        ]
+      }
+    }
   }
 }
