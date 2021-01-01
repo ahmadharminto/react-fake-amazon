@@ -6,7 +6,7 @@ const stripe = require('stripe')('sk_test_51HzTxwJzHZ47EpICEDf2H1IhYdHqJDSE5mLqe
 const app = express();
 
 app.use(cors({ 
-    origin: '*',
+    origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204

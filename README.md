@@ -1,6 +1,6 @@
 # Awesome Fake Amazon.com
 
-Demo : https://shop-c432d.web.app/
+Demo : https://amazon.ngoding-bae.my.id/
 
 1. React & Express
 2. Firebase (Database & Cloud Function)
