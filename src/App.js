@@ -12,13 +12,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Page404 from "./Page404";
 import Orders from "./Orders";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 function App() {
   const [defaultTitle, setDefaultTitle] = useState('Fake Amazon.com')
-  const [{}, dispatch] = useStateValue()
+  const [{}, dispatch] = useStateValue(null)
 
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
@@ -37,54 +37,56 @@ function App() {
   }, [dispatch])
 
   return (
-    <Router>
-       <div className="app">
-         <Switch>
-            <Route exact path="/">
-              <Helmet>
-                <title>{defaultTitle}</title>
-              </Helmet>
-              <Header />
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Helmet>
-                <title>{`Login | ${defaultTitle}`}</title>
-              </Helmet>
-              <Login />
-            </Route>
-            <Route path="/checkout">
-              <Helmet>
-                <title>{`Checkout | ${defaultTitle}`}</title>
-              </Helmet>
-              <Header />
-              <Checkout />
-            </Route>
-            <Route path="/payment">
-              <Helmet>
-                <title>{`Payment | ${defaultTitle}`}</title>
-              </Helmet>
-              <Header />
-              <Elements stripe={promise}>
-                <Payment />
-              </Elements>
-            </Route>
-            <Route path="/orders">
-              <Helmet>
-                <title>{`Order Hist | ${defaultTitle}`}</title>
-              </Helmet>
-              <Header />
-              <Orders />
-            </Route>
-            <Route>
-              <Helmet>
-                <title>{`404 | ${defaultTitle}`}</title>
-              </Helmet>
-              <Page404 />
-            </Route>
-         </Switch>
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="app">
+          <Switch>
+              <Route exact path="/">
+                <Helmet>
+                  <title>{defaultTitle}</title>
+                </Helmet>
+                <Header />
+                <Home />
+              </Route>
+              <Route path="/login">
+                <Helmet>
+                  <title>{`Login | ${defaultTitle}`}</title>
+                </Helmet>
+                <Login />
+              </Route>
+              <Route path="/checkout">
+                <Helmet>
+                  <title>{`Checkout | ${defaultTitle}`}</title>
+                </Helmet>
+                <Header />
+                <Checkout />
+              </Route>
+              <Route path="/payment">
+                <Helmet>
+                  <title>{`Payment | ${defaultTitle}`}</title>
+                </Helmet>
+                <Header />
+                <Elements stripe={promise}>
+                  <Payment />
+                </Elements>
+              </Route>
+              <Route path="/orders">
+                <Helmet>
+                  <title>{`Order Hist | ${defaultTitle}`}</title>
+                </Helmet>
+                <Header />
+                <Orders />
+              </Route>
+              <Route>
+                <Helmet>
+                  <title>{`404 | ${defaultTitle}`}</title>
+                </Helmet>
+                <Page404 />
+              </Route>
+          </Switch>
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

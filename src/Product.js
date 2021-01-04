@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyLoad from 'react-lazyload';
 import './Product.scss'
 import { useStateValue } from './StateProvider'
 
@@ -34,7 +35,9 @@ function Product({ id, title, image, price, rating}) {
                             ))
                     }
                 </div>
-                <img src={image} alt=""/>
+                <LazyLoad height={200}>
+                    <img src={image} alt="{title}"/>
+                </LazyLoad>
                 <button onClick={addToBasket}>Add to Basket</button>
             </div>
         </div>
